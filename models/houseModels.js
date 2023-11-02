@@ -7,7 +7,7 @@ const houseSchema = mongoose.Schema(
       ref: 'Payment',
     }],
     housingNumber: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
