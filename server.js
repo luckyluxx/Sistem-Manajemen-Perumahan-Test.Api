@@ -37,6 +37,6 @@ app.get("/api/payments", paymentController.reads)
 app.post("/api/add-payment:id", paymentController.create)
 
 // start the server
-app.listen(process.env.PORT || 3001)
+app.listen(process.env.PORT || 3001) 
 // app is running
 
