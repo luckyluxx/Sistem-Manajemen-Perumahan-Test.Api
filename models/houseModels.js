@@ -11,6 +11,9 @@ const houseSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    owner: {
+      type: String,
+    },
     availability: {
       type: String,
       enum: ['Permanent', 'Temporary', 'Available'],

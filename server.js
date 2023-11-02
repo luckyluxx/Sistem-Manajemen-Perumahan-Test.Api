@@ -27,7 +27,9 @@ app.get('/', (req, res) => {
 
 // houses controller
 app.get("/api/houses", houseController.reads);
-app.post("/api/add-house", houseController.create);
+app.get("/api/houses/:id", houseController.read);
+app.delete("/api/houses/:id", houseController.delete);
+app.post("/api/houses", houseController.create);
 
 // payment controller
 app.get("/api/payments", paymentController.reads)

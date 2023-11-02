@@ -1,20 +1,12 @@
 const House = require('../models/houseModels')
 
 // monthly rakapitulation
-const getMonthlySummary = async (req, res) => {
-  try{
-
-  } catch(err) {
-    console.error(err)
-    res.status(500).json({message: 'gagal mengambil rekap bulanan'})
-  }
-}
-
 const addHouse = async (req, res) => {
-  const {housingNumber, availability, payments} = req.body
+  const {housingNumber, owner, availability, payments} = req.body
 
   const  newHouse = new House({
     housingNumber,
+    owner,
     availability,
     payments,
   })
@@ -34,6 +26,7 @@ const addHouse = async (req, res) => {
   }
 }
 
+// get all house data
 const getAllHouses = async (req, res) => {
   try {
     const houses = await House.find()
@@ -41,6 +34,35 @@ const getAllHouses = async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({message: 'gagal mendapatkan data rumah'})
+  }
+}
+
+// get one house data by id
+const getHouseByID = async (req, res) => {
+  try {
+    const house = await House.findById(req.params.id)
+
+    if(!house){
+      return res.status(404).json({message: 'rumah tidak ditemukan'})
+    }
+    
+    res.json(house)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({message: 'gagal mendapatkan data rumah'})
+  }
+}
+
+const deleteHouse = async (req, res) => {
+  try {
+    const house = await House.findByIdAndDelete(req.params.id)
+    if(!house) {
+      return res.status(404).json({message: 'rumaht tidak ditemukan'})
+    }
+    res.status(200).json({message: 'rumah berhasil dihapus'})
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({message: 'gagal menghapus rumah'})
   }
 }
 
@@ -60,10 +82,12 @@ const setHouseVacant = async (req, res) => {
 }
 
 module.exports = {
-  getMonthlySummary: getMonthlySummary,
+  // getMonthlySummary: getMonthlySummary,
   setHouseVacant: setHouseVacant,
+  read: getHouseByID,
   reads: getAllHouses,
   create: addHouse,
+  delete: deleteHouse,
   // create: createValue,
   // getMilestoneByProject: getMilestoneByProject,
 };

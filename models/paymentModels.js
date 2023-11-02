@@ -6,24 +6,40 @@ const paymentSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'House'
     },
-    paymentType: {
-      type: String,
-      enum: ['Security', 'Cleaning',],
-      required: true
+    securityPayment: {
+      type: Object,
+      default: {
+        thisMonth: {
+          type: Boolean,
+          default: false,
+        } ,
+        previousMonth: {
+          type: Boolean,
+          default: false,
+        },
+        nextMonth: {
+          type: Boolean,
+          default: false,
+        },
+      }
     },
-    amount:{
-      type: Number,
-      required: true
+    cleaningPayment: {
+      type: Object,
+      default: {
+        thisMonth: {
+          type: Boolean,
+          default: false,
+        } ,
+        previousMonth: {
+          type: Boolean,
+          default: false,
+        },
+        nextMonth: {
+          type: Boolean,
+          default: false,
+        },
+      }
     },
-    paymentStatus:{
-      type: String,
-      enum: ['paid', 'unpaid'],
-      default: 'unpaid'
-    },
-    dueDate:{
-      type: Date,
-      required: true
-    }
   },
   {timestamps: true}
 );
