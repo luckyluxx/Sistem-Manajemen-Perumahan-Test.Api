@@ -21,4 +21,4 @@ Visit [github.com/luckyluxx/skill-fit-test-beon-intermedia-FRONTEND](https://git
 This Application was developt using `MERN Stack` 
 MongoDB | ExpressJs | ReactJs | NodeJs
 
-*visit [https://fragile-tuna-woolens.cyclic.app/](https://fragile-tuna-woolens.cyclic.app/) for the deployed version*
+*visit [https://api-services-beon-test.cyclic.app//](https://api-services-beon-test.cyclic.app//) for the deployed version*
